@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+    <div class="col-lg-6">
+      <div class="p-5">
+        <div class="text-center">
+          <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+        </div>
+        <div class="alert alert-warning" *ngIf="invalidLogin" role="alert">
+          <strong>{{ErrorMessage}}</strong>
+        </div>
+        <form class="user" action="post" [formGroup]="insertForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <input type="email" class="form-control form-control-user" formControlName="Email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." required autofocus>
+            <div *ngIf="Email.touched && Email.errors" class="errorMessage">
+              <span *ngIf="Email.hasError('required')">Email is required</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <input ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/" type="password" class="form-control form-control-user" id="exampleInputPassword" formControlName="Password" placeholder="Password" required autofocus>
+            <div *ngIf="Password.touched && Password.errors" class="errorMessage">
+                <span *ngIf="Password.hasError('required')">Password is required</span>
+              </div>
+          </div>
+          <div class="form-group">
+            <div class="custom-control custom-checkbox small">
+              <input type="checkbox" class="custom-control-input" id="customCheck">
+              <label class="custom-control-label" for="customCheck">Remember Me</label>
+            </div>
+          </div>
+          <input class="btn btn-primary btn-user btn-block" type="submit" value="Login" [disabled]="insertForm.invalid"/>
+
+        </form>
+        <hr>
+        <div class="text-center">
+          <a class="small" [routerLink]="['/forgotpassword']">Forgot Password?</a>
+        </div>
+        <div class="text-center">
+          <a class="small" [routerLink]="['/register']"><b>Create an Account!</b></a>
+        </div>
+        <div class="text-center">
+          <a style="color: red;" class="small" [routerLink]="['/support']">Contact Us Here!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait... </p>
+  </ngx-spinner>

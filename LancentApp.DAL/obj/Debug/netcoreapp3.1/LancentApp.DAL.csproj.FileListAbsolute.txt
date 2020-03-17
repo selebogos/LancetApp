@@ -1,0 +1,7 @@
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancentApp.DAL\bin\Debug\netcoreapp3.1\LancentApp.DAL.deps.json
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancentApp.DAL\bin\Debug\netcoreapp3.1\LancentApp.DAL.dll
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancentApp.DAL\obj\Debug\netcoreapp3.1\LancentApp.DAL.AssemblyInfoInputs.cache
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancentApp.DAL\obj\Debug\netcoreapp3.1\LancentApp.DAL.AssemblyInfo.cs
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancentApp.DAL\bin\Debug\netcoreapp3.1\LancentApp.DAL.pdb
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancentApp.DAL\obj\Debug\netcoreapp3.1\LancentApp.DAL.dll
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancentApp.DAL\obj\Debug\netcoreapp3.1\LancentApp.DAL.pdb

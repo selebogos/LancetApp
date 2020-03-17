@@ -1,0 +1,46 @@
+input[type="checkbox"]#selectSizeDropdown {
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: 0;
+  background: lightgrey;
+  height: 25px;
+  width: 27px;
+  border: 1px solid white;
+}
+
+input#selectSizeDropdown[type="checkbox"]:checked {
+  background: darkseagreen;
+}
+
+input#selectSizeDropdown[type="checkbox"]:hover {
+  filter: brightness(90%);
+}
+
+input#selectSizeDropdown[type="checkbox"]:disabled {
+  background: #e6e6e6;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+input#selectSizeDropdown[type="checkbox"]:after {
+  content: '';
+  position: relative;
+  left: 40%;
+  top: 20%;
+  width: 15%;
+  height: 40%;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  display: none;
+}
+
+input#selectSizeDropdown[type="checkbox"]:checked:after {
+  display: block;
+}
+
+input#selectSizeDropdown[type="checkbox"]:disabled:after {
+  border-color: #7b7b7b;
+}

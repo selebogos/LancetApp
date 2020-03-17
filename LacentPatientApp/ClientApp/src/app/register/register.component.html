@@ -1,0 +1,69 @@
+
+        <div class="row">
+          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+              </div>
+
+                <div class="alert alert-danger" *ngIf="invalidLogin" role="alert">
+
+                    <ul>
+                      <li *ngFor="let error of errorList">
+                          <strong>{{ error }}</strong>
+                      </li>
+                    </ul>
+                </div>
+              <form class="user" action="post" [formGroup]="insertForm" (ngSubmit)="onSubmit()">
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" class="form-control form-control-user" id="exampleFirstName" formControlName="FirstName" placeholder="First Name" required autofocus />
+                    <div *ngIf="FirstName.touched && FirstName.errors" class="errorMessage">
+                      <span *ngIf="FirstName.hasError('required')">First Name is required</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control form-control-user" id="exampleLastName" formControlName="LastName" placeholder="Last Name" required autofocus />
+
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" formControlName="Email" placeholder="Email Address" required autofocus />
+                  <div *ngIf="Email.touched && Email.errors" class="errorMessage">
+                    <span *ngIf="Email.hasError('required')">Email is required</span>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/" type="password" class="form-control form-control-user" id="exampleInputPassword" formControlName="Password" placeholder="Password" required autofocus />
+                    <div *ngIf="Password.touched && Password.errors" class="errorMessage">
+                      <span *ngIf="Password.hasError('required')">Password is required</span>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <input ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/" type="password" class="form-control form-control-user" id="exampleRepeatPassword" formControlName="RepeatPassword" placeholder="Repeat Password" required autofocus />
+                    <div *ngIf="RepeatPassword.touched && RepeatPassword.errors" class="errorMessage">
+                      <span *ngIf="RepeatPassword.hasError('required')">Repeat Password is required</span>
+                    </div>
+                  </div>
+                </div>
+                <input type="submit" class="btn btn-primary btn-user btn-block" value="Register Account" [disabled]="insertForm.invalid" />
+
+              </form>
+              <hr>
+              <div class="text-center">
+                <a class="small" [routerLink]="['/forgotpassword']">Forgot Password?</a>
+              </div>
+              <div class="text-center">
+                <a class="small" [routerLink]="['/login']"><b>Already have an account? Login!</b></a>
+              </div>
+              <div class="text-center">
+                <a style="color: red;" class="small" [routerLink]="['/support']">Contact Us Here!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+          <p style="color: white">Please Wait... </p>
+        </ngx-spinner>

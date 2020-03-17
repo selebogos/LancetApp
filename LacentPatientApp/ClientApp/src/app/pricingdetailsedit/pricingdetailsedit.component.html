@@ -1,0 +1,90 @@
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Pricing Details Edit</h1>
+  </div>
+
+  <div class="col-lg-12">
+
+    <!-- Basic Card Example -->
+    <div class="card shadow mb-12">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Pricing Details</h6>
+      </div>
+      <div class="card-body">
+
+        <div class="table-responsive">
+
+          <div class="alert alert-danger" *ngIf="invalidPricingDetails" role="alert">
+
+            <ul>
+              <li *ngFor="let error of errorList">
+                <strong>{{ error }}</strong>
+              </li>
+            </ul>
+          </div>
+
+          <div *ngIf="isSuccessful" class="alert alert-success" role="alert">
+
+
+            <strong>{{ successMessage }}</strong>
+
+          </div>
+
+
+          <form class="user" action="post" [formGroup]="insertForm" (ngSubmit)="onSave()">
+            <table class="table-striped" cellspacing="0" width="100%">
+
+              <tr>
+                <td>Wash Type</td>
+                <td>
+                  <select formControlName="WashType" class="form-control float-sm-left" [(ngModel)]="selectedWashTypeOption">
+                    <option value="Please Select" selected>Please Select</option>
+                    <option *ngFor="let type of washTypes.list" value="{{type.name}}">{{type.name}}</option>
+
+                  </select>
+                </td>
+
+            </tr>
+            <tr>
+              <td>Vehicle Type</td>
+              <td>
+                  <select formControlName="VehicleType"   class="form-control float-sm-left" [(ngModel)]="selectedVehicleTypeOption" >
+                          <option *ngFor="let type of vehicleTypes.list" value="{{type.name}}">{{type.name}}</option>
+
+                    </select>
+              </td>
+
+          </tr>
+
+              <tr>
+                <td>Amount In ZAR</td>
+                <td>
+                  <input formControlName="Amount" class="form-control float-sm-left" type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100"  placeholder="Amount..." required autofocus />
+                  <div *ngIf="Amount.touched && Amount.errors" class="errorMessage">
+                    <span *ngIf="Amount.hasError('required')">Amount is required</span>
+                  </div>
+
+                </td>
+
+              </tr>
+
+            </table>
+
+            <br />
+            <div style="text-align: center;">
+              <button class="btn btn-success btn-icon-split">
+                <span class="icon text-white-50">
+                  <i class="fas fa-check"></i>
+                </span>
+                <span class="text">Save Now</span>
+
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>

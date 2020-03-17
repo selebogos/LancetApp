@@ -1,0 +1,19 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Wash Types</h1>
+  </div>
+   <!-- DataTales Example -->
+   <div class="card shadow mb-4">
+     <div class="card-header py-3">
+       <h6 class="m-0 font-weight-bold text-primary">Wash Type list</h6>
+       <a class="btn btn-primary btn-sm float-right" [routerLink]="['/washtype']">Add Wash Type</a>
+     </div>
+     <div class="card-body">
+       <div class="table-responsive">
+  
+  
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"></table>
+  
+  
+       </div>
+     </div>
+   </div>

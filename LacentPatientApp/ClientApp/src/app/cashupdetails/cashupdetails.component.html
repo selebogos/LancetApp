@@ -1,0 +1,156 @@
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Cashup</h1>
+      </div>
+  
+      
+      <div class="user">
+        <div class="col-lg-12">
+  
+        
+          <!-- Basic Card Example -->
+          <div class="card shadow mb-12">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Today's sales </h6>
+            </div>
+            
+  
+              <div class="card-body">
+                
+              
+                    <div class="alert alert-danger" *ngIf="invalidTill" role="alert">
+    
+                        <ul>
+                        <li *ngFor="let error of errorList">
+                            <strong>{{ error }}</strong>
+                        </li>
+                        </ul>
+                    </div>
+            
+                    <div  *ngIf="isSuccessful" class="alert alert-success"  role="alert">
+    
+    
+                      <strong>{{ successMessage }}</strong>
+    
+                    </div>
+    
+    
+                    <div class="table-responsive">  
+                            <table class="table-striped"  cellspacing="0" width="100%">
+                                <tr>
+                                    <td>Today Sales in ZAR</td>
+                                    <td>
+                                      <input value="{{POS.amount1}}" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="currency"  class="form-control float-sm-left" type="text" disabled />
+                                  </td>
+                                    
+                                </tr>
+                                
+                            </table>
+                        <br/>
+                      
+                    </div>
+    
+        
+    
+                </div>
+          </div>
+        </div>
+        <br/><br/>
+        <div class="col-lg-12">
+  
+        
+            <!-- Basic Card Example -->
+            <div class="card shadow mb-12">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Other Payments in ZAR</h6>
+              </div>
+              <div class="card-body">
+
+                  <div class="table-responsive">  
+                      <table class="table-striped"  cellspacing="0" width="100%">
+                  <tr>
+                      <td>Payment 1</td>
+                      <td>
+                          <input value="{{POS.amount2}}" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="currency"  class="form-control float-sm-left" type="text" disabled  />
+                      </td>
+                      
+                  </tr>
+                  
+                  <tr>
+                      <td>Payment 2</td>
+                      <td>
+                          <input value="{{POS.amount3}}" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="currency"  class="form-control float-sm-left" type="text" disabled/>
+                      </td>
+                      
+                  </tr>
+                  <tr>
+                      <td>Payment 3</td>
+                      <td>
+                          <input value="{{POS.amount4}}" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="currency"  class="form-control float-sm-left" type="text" disabled  />
+                      </td>
+                      
+                  </tr>
+                  <tr>
+                      <td>Payment 4</td>
+                      <td>
+                          <input value="{{POS.amount5}}" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="currency"  class="form-control float-sm-left" type="text" disabled  />
+                      </td>
+                      
+                  </tr>
+                  <tr>
+                      <td>Payment 5</td>
+                      <td>
+                          <input value="{{POS.amount6}}" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="currency"  class="form-control float-sm-left" type="text" disabled  />
+                      </td>
+                      
+                  </tr>
+                  <tr>
+                      <td>Payment 6</td>
+                      <td>
+                          <input value="{{POS.amount7}}" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="currency"  class="form-control float-sm-left" type="text" disabled />
+                      </td>
+                      
+                  </tr>
+                  <tr>
+                      <td>Payment 7</td>
+                      <td>
+                          <input value="{{POS.amount8}}" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="currency" class="form-control float-sm-left" type="text" disabled  />
+                      </td>
+                      
+                  </tr>
+                  <tr>
+                        <td>Note </td>
+                        <td>
+                            <textarea  class="form-control" rows="3" placeholder="Note..." disabled>
+                                {{POS.note}}
+                            </textarea>
+                        </td>
+                        
+                    </tr>
+                      </table>
+                  </div>
+
+              </div>
+          </div>
+            <br/>
+            <div style="text-align: center;">
+                <a [routerLink]="['/editcashup',POS.cashupId]"  class="btn btn-success btn-icon-split">
+                  <span class="icon text-white-50">
+                  <i class="fas fa-check"></i>
+                  </span>
+                  <span class="text">Edit Now</span>
+                </a>
+            </div>
+
+         
+
+          </div>
+        </div>
+         
+  
+        
+        
+      
+  
+  

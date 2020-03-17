@@ -1,0 +1,72 @@
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-800">Booking</h1>
+    </div>
+
+      <div class="col-lg-12">
+
+        <!-- Basic Card Example -->
+        <div class="card shadow mb-12">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Booking</h6>
+          </div>
+          <div class="card-body">
+
+            <div class="table-responsive">
+
+              <div class="user" >
+                <table class="table-striped" cellspacing="0" width="100%">
+
+                  <tr>
+                    <td>Scheduler</td>
+                    <td>
+                      <input value="{{Booking.scheduler}}"  class="form-control float-sm-left" type="text" placeholder="Scheduler..." disabled autofocus />
+
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td>Date</td>
+                    <td>
+                      <input value="{{Booking.date}}"  class="form-control float-sm-left" type="text" placeholder="Date..." disabled autofocus />
+
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td>Contact Details</td>
+                    <td>
+                      <input value="{{Booking.contact}}"  class="form-control float-sm-left" type="text" placeholder="Contact Details..." disabled autofocus />
+
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td>Time</td>
+                    <td>
+                      <input value="{{Booking.time}}"  class="form-control float-sm-left" type="text" placeholder="Time..." disabled autofocus />
+
+                    </td>
+
+                  </tr>
+
+                </table>
+                <br />
+                <div style="text-align: center;">
+                  <a [routerLink]="['/editbranch',Booking.Id]"  class="btn btn-success btn-icon-split">
+                    <span class="icon text-white-50">
+                    <i class="fas fa-check"></i>
+                    </span>
+                    <span class="text">Edit Now</span>
+                  </a>
+                </div>
+
+              </div>
+
+            </div>
+
+        </div>
+        </div>
+
+      </div>

@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~selectize/dist/css/selectize.css';
+@import '~selectize/dist/css/selectize.bootstrap3.css';
+/*@import '~fontawesome-free/csss/all.css';*/
+@import  '@fortawesome/fontawesome-free/css/all.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.container-field {
+    display: flex;
+    flex-direction: column;
+    font: 17px Calibri;
+  }
+
+  .container-field > * {
+    width: 100%;
+  }
+
+.logo {
+
+        font-family: 'Kaushan Script', cursive;
+
+  }
+
+  .errorMessage{
+      color: red;
+
+  }

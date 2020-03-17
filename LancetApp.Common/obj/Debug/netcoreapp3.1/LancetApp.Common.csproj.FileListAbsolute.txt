@@ -1,0 +1,11 @@
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancetApp.Common\bin\Debug\netcoreapp3.1\LancetApp.Common.deps.json
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancetApp.Common\bin\Debug\netcoreapp3.1\LancetApp.Common.dll
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancetApp.Common\bin\Debug\netcoreapp3.1\LancetApp.Common.pdb
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancetApp.Common\bin\Debug\netcoreapp3.1\LancetApp.DAL.dll
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancetApp.Common\bin\Debug\netcoreapp3.1\LancetApp.DAL.pdb
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancetApp.Common\obj\Debug\netcoreapp3.1\LancetApp.Common.csprojAssemblyReference.cache
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancetApp.Common\obj\Debug\netcoreapp3.1\LancetApp.Common.AssemblyInfoInputs.cache
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancetApp.Common\obj\Debug\netcoreapp3.1\LancetApp.Common.AssemblyInfo.cs
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancetApp.Common\obj\Debug\netcoreapp3.1\LancetApp.Common.csproj.CopyComplete
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancetApp.Common\obj\Debug\netcoreapp3.1\LancetApp.Common.dll
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancetApp.Common\obj\Debug\netcoreapp3.1\LancetApp.Common.pdb

@@ -1,0 +1,112 @@
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">My Profile</h1>
+      </div>
+        <div class="col-lg-12">
+          <!-- Basic Card Example -->
+          <div class="card shadow mb-12">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">My Details</h6>
+            </div>
+            <div class="card-body">
+
+              <div class="table-responsive">
+
+                <div class="user" >
+                  <table class="table-striped" cellspacing="0" width="100%">
+
+                    <tr>
+                      <td>Name</td>
+                      <td>
+                        <input value="{{User.firstname}}"  class="form-control float-sm-left" type="text" placeholder="name..." disabled autofocus />
+
+                      </td>
+
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td>
+                          <input value="{{User.lastname}}"  class="form-control float-sm-left" type="text" placeholder="last name..." disabled autofocus />
+
+                        </td>
+
+                      </tr>
+                      <tr>
+                          <td>email</td>
+                          <td>
+                            <input value="{{User.email}}"  class="form-control float-sm-left" type="email" placeholder="email..." disabled autofocus />
+
+                          </td>
+
+                        </tr>
+                        <tr>
+                            <td>User role</td>
+                            <td>
+                              <input value="{{User.userRole}}"  class="form-control float-sm-left" type="text" placeholder="user role..." disabled autofocus />
+
+                            </td>
+
+                          </tr>
+
+                  </table>
+
+                </div>
+
+              </div>
+
+          </div>
+          </div>
+
+        <br/>
+                <div class="card shadow mb-12" *ngIf="IsRightUser">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Business Details</h6>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table-striped"  cellspacing="0" width="100%">
+                          <tr>
+                              <td>Name</td>
+                              <td>
+                                  <input value="{{User.businessName}}" name="businessname" class="form-control float-sm-left" type="text" placeholder="Business Name..." disabled/>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>Street</td>
+                              <td>
+                                  <input value="{{User.street}}" name="street" class="form-control float-sm-left" type="text" placeholder="street..." disabled/>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>Suburb</td>
+                              <td>
+                                  <input value="{{User.suburb}}" name="Suburb" class="form-control float-sm-left" type="text" placeholder="Suburb..." disabled />
+                              </td>
+                          </tr>
+                          <tr>
+                            <td>City</td>
+                            <td>
+                                <input value="{{User.city}}" name="City" class="form-control float-sm-left" type="text" placeholder="City/Town..." disabled />
+                            </td>
+                        </tr>
+                          <tr>
+                                  <td>Postal Code</td>
+                                  <td>
+                                      <input value="{{User.postalCode}}"  name="PostalCode" class="form-control float-sm-left" type="text" placeholder="Postal Code..." disabled />
+                                  </td>
+                              </tr>
+                      </table>
+              </div>
+                  </div>
+                  </div>
+        </div>
+                  <br />
+                  <div style="text-align: center;">
+                    <a [routerLink]="['/editprofile']"  class="btn btn-success btn-icon-split">
+                      <span class="icon text-white-50">
+                      <i class="fas fa-check"></i>
+                      </span>
+                      <span class="text">Edit Now</span>
+                    </a>
+                  </div>

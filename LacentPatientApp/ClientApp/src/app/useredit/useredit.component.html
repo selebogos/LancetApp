@@ -1,0 +1,114 @@
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">User</h1>
+      </div>
+
+
+
+        <div class="col-lg-12">
+
+
+          <!-- Basic Card Example -->
+          <div class="card shadow mb-12">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">User Details</h6>
+            </div>
+            <div class="card-body">
+
+                  <form class="user" action="post" [formGroup]="insertForm" (ngSubmit)="onSave()">
+
+                          <div class="alert alert-danger" *ngIf="invalidUser" role="alert">
+
+                              <ul>
+                              <li *ngFor="let error of errorList">
+                                  <strong>{{ error }}</strong>
+                              </li>
+                              </ul>
+                          </div>
+
+                          <div  *ngIf="isSuccessful" class="alert alert-success"  role="alert">
+
+
+                            <strong>{{ successMessage }}</strong>
+
+                          </div>
+
+                  <div class="table-responsive">
+                          <table class="table-striped"  cellspacing="0" width="100%">
+
+                              <tr>
+                                  <td>Fist name</td>
+                                  <td>
+                                      <input formControlName="FirstName" name="firstname" class="form-control float-sm-left" type="text" placeholder="Name..." />
+                                  </td>
+
+                              </tr>
+                              <tr>
+                                  <td>Last name</td>
+                                  <td>
+                                      <input formControlName="LastName" name="lastname" class="form-control float-sm-left" type="text" placeholder="last name..." />
+                                  </td>
+
+                              </tr>
+                              <tr>
+                                  <td>Email</td>
+                                  <td>
+                                      <input formControlName="Email" name="Email" class="form-control float-sm-left" type="email" placeholder="Email..." />
+                                  </td>
+
+                              </tr>
+                              <tr>
+                                  <td>Role</td>
+                                  <td>
+                                      <select formControlName="UserRole"   class="form-control float-sm-left" [(ngModel)]="selectedOption" >
+                                          <option value="Administrator">Administrator</option>
+                                          <option value="Supervisor">Supervisor</option>
+
+                                        </select>
+                                  </td>
+
+                              </tr>
+                              <tr>
+                                <td>Branch</td>
+                                <td>
+                                    <select ngFor formControlName="Branch"   class="form-control float-sm-left" [(ngModel)]="selectedBranchOption" >
+                                      <option *ngFor="let branchItem of branches.list" value="{{branchItem.name}}">{{branchItem.name}}</option>
+
+                                      </select>
+                                </td>
+
+                            </tr>
+                              <tr>
+                                  <td>Active?</td>
+
+                                  <td>
+                                        <div >
+                                            <input [(ngModel)]="IsActive" [ngModelOptions]="{standalone: true}" id="customCheck" [checked]="check" (change)="activated($event)" name="Active"  type="checkbox" data-toggle="toggle" />
+
+                                        </div>
+                                  </td>
+                              </tr>
+
+                          </table>
+                          <br/>
+                          <div style="text-align: center;">
+                              <button class="btn btn-success btn-icon-split">
+                                  <span class="icon text-white-50">
+                                  <i class="fas fa-check"></i>
+                                  </span>
+                                  <span class="text">Save Now</span>
+                              </button>
+                          </div>
+                  </div>
+
+              </form>
+
+
+          </div>
+          </div>
+
+        </div>
+        <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
+          <p style="color: white">Please Wait... </p>
+        </ngx-spinner>
