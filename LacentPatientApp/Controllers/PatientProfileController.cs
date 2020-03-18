@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using AutoMapper;
 using LancetApp.Common.Config;
@@ -171,29 +172,6 @@ namespace LancetApp.Web.Controllers
                 return StatusCode(500, new JsonResult(new { message = $"Something went wrong inside the getall patientProfiles action: {e.Message}" }));
             }
         }
-        public async Task<string> UploadProfilePicture([FromForm(Name = "uploadedFile")] IFormFile file, long userId)
-        {
-            if (file == null || file.Length == 0)
-            {//   throw new UserFriendlyException("Please select profile picture");
-            }
-
-            var folderName = Path.Combine("Resources", "ProfilePics");
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-
-            if (!Directory.Exists(filePath))
-            {
-                Directory.CreateDirectory(filePath);
-            }
-
-            var uniqueFileName = $"{userId}_profilepic.png";
-            var dbPath = Path.Combine(folderName, uniqueFileName);
-
-            using (var fileStream = new FileStream(Path.Combine(filePath, uniqueFileName), FileMode.Create))
-            {
-                await file.CopyToAsync(fileStream);
-            }
-
-            return dbPath;
-        }
+        
     }
 }

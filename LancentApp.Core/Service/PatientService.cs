@@ -18,6 +18,7 @@ using Newtonsoft.Json;
 
 namespace LancetApp.Core.Service
 {
+
     public class PatientService : IPatientService
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -53,7 +54,6 @@ namespace LancetApp.Core.Service
             }
             catch (Exception e)
             {
-
                 return null;
             }
         }

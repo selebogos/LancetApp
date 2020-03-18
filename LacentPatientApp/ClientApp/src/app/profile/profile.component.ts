@@ -61,7 +61,7 @@ export class ProfileComponent implements OnInit {
       // In a real app: dispatch action to load the details here.
    });
 
-    this.register.getProfileDetails().subscribe(
+    /*this.register.getProfileDetails().subscribe(
 
       data => {
         this.User = data as any;
@@ -83,7 +83,7 @@ export class ProfileComponent implements OnInit {
         this.register.logout();
         console.log('Error:Problem getting the profile details ' + error);
 
-    });
+    });*/
 
   }
 

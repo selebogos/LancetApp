@@ -43,5 +43,6 @@ namespace LancetApp.DAL.DBContext
         public DbSet<NormalRange> NormalRanges { get; set; }
         public DbSet<TestResult> TestResults { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<ProfilePicture> ProfilePicture { get; set; }
     }
 }

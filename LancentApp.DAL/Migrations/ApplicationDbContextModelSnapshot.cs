@@ -94,7 +94,7 @@ namespace LancetApp.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("1dd985ff-6eb9-4b08-9304-116f542b070e"),
+                            Id = new Guid("24fa5779-6884-483b-b7b9-becb25f4fbb3"),
                             Code = "ZA",
                             Name = "South Africa"
                         });
@@ -190,6 +190,26 @@ namespace LancetApp.DAL.Migrations
                     b.ToTable("PatientProfiles");
                 });
 
+            modelBuilder.Entity("LancetApp.DAL.Entities.ProfilePicture", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("path")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProfilePicture");
+                });
+
             modelBuilder.Entity("LancetApp.DAL.Entities.Requisition", b =>
                 {
                     b.Property<Guid>("Id")
@@ -205,6 +225,9 @@ namespace LancetApp.DAL.Migrations
                     b.Property<string>("ReferringPhysician")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RequisitionNumber")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -526,6 +549,15 @@ namespace LancetApp.DAL.Migrations
                     b.HasOne("LancetApp.DAL.Entities.Patient", "Patient")
                         .WithMany()
                         .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("LancetApp.DAL.Entities.ProfilePicture", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

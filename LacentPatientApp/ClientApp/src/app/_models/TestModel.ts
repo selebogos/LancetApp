@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 import { TestResultModel } from './TestResultModel';
+import { RequisitionModel } from './RequisitionModel';
+import { NormalRangeModel } from './NormalRangeModel';
 
 @Injectable({
     providedIn:'root'
@@ -7,10 +9,14 @@ import { TestResultModel } from './TestResultModel';
 
 export class TestModel {
 
-    public  Id : string;
+    public  id : string;
     public name:string;
     public  comment :string;
     public  testResultId :number;
-    public  NormalValueId :number;
-    public TestResult:TestResultModel;
+
+    public  normalValueId :number;
+    public testResult:TestResultModel;
+    public  requisitionId :string;
+    public requisition:RequisitionModel;
+    public  normalRange :NormalRangeModel;
 }

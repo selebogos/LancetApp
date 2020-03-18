@@ -84,7 +84,23 @@ namespace LancetApp.Web.Controllers
                 return StatusCode(500, new JsonResult(new { message = e.Message }));
             }
         }
+        [HttpGet("search")]
+        [Authorize(Roles = Role.Admin)]
+        public async Task<IActionResult> GetRequisitionByNumber(int requisitionNumber)
+        {
+            try
+            {
+                var requisitionDtos = await _requisitionService.SearchByNumber(requisitionNumber);
+                if (requisitionDtos == null)
+                    return NotFound();
 
+                return Ok(requisitionDtos);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new JsonResult(new { message = e.Message }));
+            }
+        }
         [HttpPut("update/{id}")]
         public async Task<IActionResult> UpdateRequisition(Guid id, [FromBody]RequisitionViewModel formdata)
         {

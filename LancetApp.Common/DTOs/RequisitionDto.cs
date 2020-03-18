@@ -7,11 +7,11 @@ namespace LancetApp.Common.DTOs
 {
     public class RequisitionDto
     {
-        
         public RequisitionDto()
         {
             Tests = new List<TestDto>();
         }
+        public int RequisitionNumber { get; set; }
         public Guid Id { get; set; }
         public DateTime DateSubmitted { get; set; }
         [Required]

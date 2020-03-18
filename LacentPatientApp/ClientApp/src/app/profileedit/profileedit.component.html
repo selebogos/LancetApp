@@ -22,91 +22,52 @@
                           </div>
                   <div class="table-responsive">
                           <table class="table-striped"  cellspacing="0" width="100%">
-                              <tr>
-                                  <td>Fist name</td>
-                                  <td>
-                                      <input formControlName="FirstName" name="firstname" class="form-control float-sm-left" type="text" placeholder="Name..." />
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>Last name</td>
-                                  <td>
-                                      <input formControlName="LastName" name="lastname" class="form-control float-sm-left" type="text" placeholder="last name..." />
-                                  </td>
-                              </tr>
+
                               <tr>
                                   <td>Email</td>
                                   <td>
                                       <input formControlName="Email" name="Email" class="form-control float-sm-left" type="email" placeholder="Email..." />
                                   </td>
                               </tr>
-                              <tr>
-                                  <td>Role</td>
-                                  <td>
-                                      <select formControlName="UserRole"   class="form-control float-sm-left" [(ngModel)]="selectedOption" >
-                                          <option value="Administrator" *ngIf="IsRightUser">Administrator</option>
-                                          <option value="Supervisor">Supervisor</option>
-                                        </select>
-                                  </td>
-                              </tr>
                           </table>
-                          <br/>
+
                   </div>
                   </div>
                 </div>
                 <br/>
-                <div class="card shadow mb-12" *ngIf="IsRightUser">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Business Details</h6>
-                  </div>
-                  <div class="card-body">
-                    <div class="table-responsive">
-                      <table class="table-striped"  cellspacing="0" width="100%">
-                          <tr>
-                              <td>Name</td>
-                              <td>
-                                  <input formControlName="BusinessName" name="businessname" class="form-control float-sm-left" type="text" placeholder="Business Name..." />
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>Street</td>
-                              <td>
-                                  <input formControlName="Street" name="street" class="form-control float-sm-left" type="text" placeholder="street..." />
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>Suburb</td>
-                              <td>
-                                  <input formControlName="Suburb" name="Suburb" class="form-control float-sm-left" type="text" placeholder="Suburb..." />
-                              </td>
-                          </tr>
-                          <tr>
-                            <td>City</td>
-                            <td>
-                                <input formControlName="City" name="City" class="form-control float-sm-left" type="text" placeholder="City/Town..." />
-                            </td>
-                        </tr>
-                          <tr>
-                                  <td>Postal Code</td>
-                                  <td>
-                                      <input formControlName="PostalCode" name="PostalCode" class="form-control float-sm-left" type="text" placeholder="Postal Code..." />
-                                  </td>
-                              </tr>
-                      </table>
-              </div>
-                  </div>
-                  </div>
 
+                  <div class="card shadow mb-12">
+                    <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-primary">Profile Picture</h6>
+                    </div>
+                    <div class="card-body">
+                          <div class="row" >
+                            <div class="col-md-3">
+                              <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+                              <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+                            </div>
+                            <div class="col-md-4">
+                              <span class="upload" *ngIf="progress > 0">
+                                {{progress}}%
+                              </span>
+                              <span class="upload" *ngIf="message">
+                                {{message}}
+                              </span>
+                            </div>
+                          </div>
+
+                    </div>
+                  </div>
                   <br/>
                   <div style="text-align: center;">
-                      <button class="btn btn-success btn-icon-split">
-                          <span class="icon text-white-50">
-                          <i class="fas fa-check"></i>
-                          </span>
-                          <span class="text">Save Now</span>
-                      </button>
-                  </div>
-                  <br/>
+                    <button class="btn btn-success btn-icon-split" >
+                        <span class="icon text-white-50">
+                        <i class="fas fa-check"></i>
+                        </span>
+                        <span class="text">Save Now</span>
+                    </button>
+                </div>
+                <br/>
               </form>
         </div>
         <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">

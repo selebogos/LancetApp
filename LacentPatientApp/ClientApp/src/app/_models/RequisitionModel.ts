@@ -8,7 +8,8 @@ import { PatientProfileModel } from './PatientProfile';
 
 export class RequisitionModel {
 
-    public  Id : string;
+    public  id : string;
+    public  requisitionNumber :number;
     public dateSubmitted:Date;
     public  referringPhysician :string;
     public  profileId :string;

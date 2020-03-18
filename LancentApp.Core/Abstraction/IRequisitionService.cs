@@ -12,6 +12,7 @@ namespace LancetApp.Core.Abstraction
         Task<IEnumerable<RequisitionDto>> GetAll();
         Task<string> GetAll(DatatableParametersDto dataItems);
         Task<RequisitionDto> Get(Guid id);
+        Task<List<RequisitionDto>> SearchByNumber(int number);
         Task<bool> RemoveRequisition(Guid id);
         Task<Guid> UpdateRequisition(RequisitionDto patientData);
     }

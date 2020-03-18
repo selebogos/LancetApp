@@ -104,6 +104,13 @@ export class RequisitionComponent implements OnInit {
         this.errorList.push("Please provide the referring Physician");
         return;
       }
+      if(details.dateSubmitted===null || details.dateSubmitted===undefined || details.dateSubmitted==="" || details.dateSubmitted===" ")
+      {
+        this.SpinnerService.hide();
+        this.invalidUser=true;
+        this.errorList.push("Please provide the date");
+        return;
+      }
       this.User.referringPhysician=details.ReferringPhysician;
       this.User.dateSubmitted=details.DateSubmitted;
       this.User.profileId=this.patientProfileId;

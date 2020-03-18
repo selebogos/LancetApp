@@ -60,7 +60,6 @@ export class RequisitiondetailsComponent implements OnInit {
       // In a real app: dispatch action to load the details here.
    });
     this.requisitionService.getRequisitionDetails(this.id).subscribe(
-
       data => {
         debugger;
         this.User = data as any;
@@ -71,9 +70,6 @@ export class RequisitiondetailsComponent implements OnInit {
       error => {
         this.register.logout();
         console.log('Error:Problem getting the requisition details ' + error);
-
     });
   }
-
-
 }

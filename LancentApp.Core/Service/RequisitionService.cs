@@ -108,6 +108,8 @@ namespace LancetApp.Core.Service
             {
                 var user = await _userManager.FindByEmailAsync(_userId);
                 var requisition = _mapper.Map<Requisition>(requisitionData);
+                var noOfRequisitions = await GetAll();
+                requisition.RequisitionNumber=noOfRequisitions.Count()+1;
                 _dbContext.Requisitions.Add(requisition);
                 await _dbContext.SaveChangesAsync();
                 return requisition.Id;
@@ -170,6 +172,20 @@ namespace LancetApp.Core.Service
             catch (Exception e)
             {
                 return Guid.Empty;
+            }
+        }
+
+        public async Task<List<RequisitionDto>> SearchByNumber(int number)
+        {
+            try
+            {
+                var requisitions = await _dbContext.Requisitions.Where(p=>p.RequisitionNumber.ToString().Contains(number.ToString())).ToListAsync();
+                var requisitionDtos = _mapper.Map<List<Requisition>, List<RequisitionDto>>(requisitions);
+                return requisitionDtos;
+            }
+            catch (Exception e)
+            {
+                return null;
             }
         }
     }

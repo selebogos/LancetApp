@@ -1,1 +1,74 @@
-<p>testdetails works!</p>
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-800">Patient's Test</h1>
+    </div>
+      <div class="col-lg-12">
+        <!-- Basic Card Example -->
+        <div class="card shadow mb-12">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Test Details</h6>
+          </div>
+          <div class="card-body">
+
+            <div class="table-responsive">
+
+              <div class="user" >
+                <table class="table-striped" cellspacing="0" width="100%">
+                  <tr>
+                      <td>Full Name</td>
+                      <td>
+                        <input value="{{User.name}}"  class="form-control float-sm-left" type="text" placeholder="Test Name..." disabled autofocus disabled />
+
+                      </td>
+
+                    </tr>
+                      <tr>
+                        <td>Normal Range Value</td>
+                        <td>
+                          <input value="{{normalRangeDescription}}"  class="form-control float-sm-left" type="text" placeholder="Range..." disabled autofocus disabled/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Test Result</td>
+                        <td>
+                          <input value="{{testResultDescription}}"  class="form-control float-sm-left" type="text" placeholder="Range..." disabled autofocus disabled/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Requisition Number</td>
+                       <td>
+                        <a [routerLink]="['/requisitiondetails',requisitionId]" >
+                          {{requisitionNumber}}
+                        </a>
+                        </td>
+
+                      </tr>
+                      <tr>
+                        <td>Comment</td>
+                        <td>
+                            <textarea rows="5" col="12" formControlName="Comment" name="Comment" class="form-control float-sm-left" placeholder="Please leave Comment.." disabled>
+                              {{User.comment}}
+                            </textarea>
+                        </td>
+                    </tr>
+                </table>
+
+              </div>
+
+            </div>
+
+        </div>
+        </div>
+
+      <br/>
+      </div>
+                <br />
+                <div style="text-align: center;">
+                  <a [routerLink]="['/edittest',id]"  class="btn btn-success btn-icon-split">
+                    <span class="icon text-white-50">
+                    <i class="fas fa-check"></i>
+                    </span>
+                    <span class="text">Edit Now</span>
+                  </a>
+                </div>

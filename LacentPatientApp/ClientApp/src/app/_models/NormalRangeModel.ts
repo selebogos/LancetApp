@@ -6,6 +6,6 @@ import { Injectable } from "@angular/core";
 
 export class NormalRangeModel {
 
-    public  Id : string;
+    public  id : string;
     public description:string;
 }

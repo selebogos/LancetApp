@@ -8,7 +8,7 @@ import { RequisitionModel } from './RequisitionModel';
 
 export class PatientProfileModel {
 
-    public  Id : string;
+    public  id : string;
     public  patientId :number;
     public  Requisitions :Array<RequisitionModel> = [];
     public patient:PatientViewModel;

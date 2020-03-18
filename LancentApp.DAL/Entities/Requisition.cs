@@ -14,6 +14,7 @@ namespace LancetApp.DAL.Entities
         {
             Tests = new List<Test>();
         }
+        public int RequisitionNumber { get; set; }
         public DateTime DateSubmitted { get; set; }
         [Required]
         public string ReferringPhysician { get; set; }

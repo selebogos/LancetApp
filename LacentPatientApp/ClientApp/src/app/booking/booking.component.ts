@@ -5,8 +5,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrderService } from '../order.service';
 import { PaymentmethodService } from '../paymentmethod.service';
 import { PricingdetailService } from '../pricingdetail.service';
-import { WashtypeService } from '../washtype.service';
-import { VehicletypeService } from '../vehicletype.service';
 import { RegisterService } from '../register.service';
 import { CustomerService } from '../customer.service';
 import { BranchService } from '../branch.service';

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -40,10 +41,15 @@ namespace LancetApp
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.Configure<FormOptions>(o => {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
             services.AddAutoMapper(c => c.AddProfile<AutoMapping>(), typeof(Startup));
             services.AddAutoMapper(c => c.AddProfile<CommonAutoMapping>(), typeof(Startup));
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpContextAccessor();
             services.AddScoped<IPatientService, PatientService>(); 
             services.AddScoped<ApplicationDbContext>();
             services.AddScoped<INormalRangeService, NormalRangeService>();
@@ -51,6 +57,8 @@ namespace LancetApp
             services.AddScoped<IRequisitionService, RequisitionService>();
             services.AddScoped<ITestResultService, TestResultService>();
             services.AddScoped<ITestService, TestService>();
+            services.AddScoped<IUserService, UserService>();
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -142,6 +150,12 @@ namespace LancetApp
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"AppResources")),
+                RequestPath = new PathString("/AppResources")
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

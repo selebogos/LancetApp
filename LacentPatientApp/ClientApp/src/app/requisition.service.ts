@@ -15,6 +15,7 @@ export class RequisitionService {
   private baseUrllRequisition: string = "/api/requisition/add";
   private baseUrlPatientDetails: string = "/api/requisition/";
   private baseUrllPatientEdit: string = "/api/requisition/update/";
+  private baseUrllRequisitionSearch: string = "/api/requisition/search?requisitionNumber=";
   constructor(private http: HttpClient, private router: Router) {
   }
 
@@ -69,6 +70,23 @@ try {
 
     }
 
+
+  }
+
+  public search(requisitionNumber: number){
+
+    try{
+      debugger;
+      var  uri = this.baseUrllRequisitionSearch + requisitionNumber;
+
+        let headers = new HttpHeaders();
+        headers.set('Content-Type', 'application/json');
+        return this.http.get(uri, { headers }).pipe(debounceTime(500));
+
+    } catch(e){
+      console.log("Error:problem searching for requisition "+ e.Message);
+      return e.Message;
+    }
 
   }
 

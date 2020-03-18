@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
     localStorage.removeItem('username');
     localStorage.removeItem('expiration');
     localStorage.removeItem('userRole');
-
+    debugger;
     this.register.login(userlogin.Email,userlogin.Password).subscribe(result=>{
       this.SpinnerService.hide();
       let token=(<any>result).token;

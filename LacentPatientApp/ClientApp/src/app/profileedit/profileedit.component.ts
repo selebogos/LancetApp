@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter  } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RegisterService } from '../register.service';
@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserModel } from '../_models/UserModel';
 import { ActivatUIService } from '../activat-ui.service';
 import { NgxSpinnerService } from "ngx-spinner";
+import { HttpEventType, HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-profileedit',
   templateUrl: './profileedit.component.html',
@@ -18,6 +19,9 @@ export class ProfileeditComponent implements OnInit {
   IsLoggedIn = false;
   Username$: Observable<string>;
   UserRole: FormControl;
+  public progress: number;
+  public message: string;
+  @Output() public onUploadFinished = new EventEmitter();
   Email: FormControl;
   LastName: FormControl;
   FirstName: FormControl;
@@ -38,7 +42,11 @@ export class ProfileeditComponent implements OnInit {
   id: number;
   private sub: any;
   IsRightUser:boolean;
+  private baseUrllUpload:string="/api/account/uploadfile/";
+  public response: {dbPath: ''};
+
   constructor(private activeRoute: ActivatedRoute,private register: RegisterService,
+    private http: HttpClient,
     private customerService:CustomerService,private activateUIService:ActivatUIService,private SpinnerService: NgxSpinnerService,
     private router: Router, private fb: FormBuilder) {
   }
@@ -89,39 +97,31 @@ export class ProfileeditComponent implements OnInit {
       // In a real app: dispatch action to load the details here.
    });
 
-    this.register.getProfileDetails().subscribe(
 
-      data => {
-
-        this.User = data as any;
-        console.log(this.User);
-        this.LastName.setValue(this.User.lastname);
-        this.FirstName.setValue(this.User.firstname);
-        this.Email.setValue(this.User.email);
-        if(this.User.userRole === 'Manager')
-        {
-            this.User.userRole='Administrator';
-            this.IsRightUser=true;
-            this.PostalCode.setValue(this.User.postalCode);
-            this.Street.setValue(this.User.street);
-            this.City.setValue(this.User.city);
-            this.Suburb.setValue(this.User.suburb);
-            this.BusinessName.setValue(this.User.businessName);
-        }
-        else if(this.User.userRole === 'User')
-        {
-          this.IsRightUser=false;
-          this.User.userRole='Supervisor';
-        }
-        this.UserRole.setValue(this.User.userRole);
-
-      },
-      error => {
-        console.log('Error:Problem getting the user details ' + error);
-
-    });
 
   }
+  public uploadFinished = (event) => {
+    this.response = event;
+  }
+  public uploadFile = (files) => {
+    if (files.length === 0) {
+      return;
+    }
+
+    let fileToUpload = <File>files[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+
+    this.http.post(this.baseUrllUpload, formData, {reportProgress: true, observe: 'events'})
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress)
+          this.progress = Math.round(100 * event.loaded / event.total);
+        else if (event.type === HttpEventType.Response) {
+          this.message = 'Upload success.';
+          this.onUploadFinished.emit(event.body);
+        }
+      });
+    }
 
   onSave() {
 
@@ -130,28 +130,13 @@ export class ProfileeditComponent implements OnInit {
       this.errorList=[];
       this.invalidUser=false;
       let details = this.insertForm.value;
-      this.UserRole = this.selectedOption;
-      details.UserRole=this.UserRole;
-      if(details.UserRole===null || details.UserRole===undefined || details.UserRole==="" || details.UserRole===" ")
-      {
-        this.SpinnerService.hide();
-        this.invalidUser=true;
-        this.errorList.push("Please provide the user role");
-        return;
-      }
-      else if(details.FirstName===null || details.FirstName===undefined || details.FirstName==="" || details.FirstName===" "){
-        this.SpinnerService.hide();
-        this.invalidUser=true;
-        this.errorList.push("Please provide the first name");
-        return;
-      }
-      else if(details.Email===null || details.Email===undefined || details.Email==="" || details.Email===" "){
+      if(details.Email===null || details.Email===undefined || details.Email==="" || details.Email===" "){
         this.SpinnerService.hide();
         this.invalidUser=true;
         this.errorList.push("Please provide the email");
         return;
       }
-
+      debugger;
       this.register.updateProfileDetails(details.UserRole,details.FirstName,details.LastName,details.Email,
         details.Password,details.BusinessName,details.Street,details.City,details.Suburb,details.PostalCode).subscribe(result => {
           this.SpinnerService.hide();
@@ -197,6 +182,5 @@ export class ProfileeditComponent implements OnInit {
     }
     return;
   }
-
-
 }
+

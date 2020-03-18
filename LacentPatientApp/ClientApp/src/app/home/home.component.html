@@ -13,7 +13,7 @@
       <div class="card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Today's No. Of Washes </div>
+            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Today's No. Of Requisitions </div>
             <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
           </div>
           <div class="col-auto">
@@ -30,7 +30,7 @@
       <div class="card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">This Month's No. Of Washes</div>
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">This Month's No. Of Requisitions</div>
             <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
           </div>
           <div class="col-auto">
@@ -48,7 +48,7 @@
       <div class="card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Today's Sales Amount</div>
+            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Today's No. Of Test</div>
             <div class="row no-gutters align-items-center">
               <div class="col-auto">
                 <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">0</div>
@@ -74,8 +74,8 @@
       <div class="card-body">
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">This Month's Sale Amount</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800">{{thisMonthSalesAmount}}</div>
+            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">This Month's No. Of Tests</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
           </div>
           <div class="col-auto">
               <i class="fas fa-money-bill fa-2x text-gray-300"></i>
@@ -87,20 +87,3 @@
     </div>
   </div>
 </div>
-
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0 text-gray-800">Orders Per Branch This Month</h1>
-</div>
- <!-- DataTales Example -->
- <div class="card shadow mb-4">
-   <div class="card-header py-3">
-     <h6 class="m-0 font-weight-bold text-primary">Branch list</h6>
-   </div>
-   <div class="card-body">
-     <div class="table-responsive">
-
-        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"></table>
-
-     </div>
-   </div>
- </div>

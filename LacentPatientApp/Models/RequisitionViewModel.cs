@@ -13,10 +13,13 @@ namespace LancetApp.Web.Models
             Tests = new List<TestViewModel>();
         }
         public Guid Id { get; set; }
+        public int RequisitionNumber { get; set; }
+        [Required(ErrorMessage = "The date submitted is required")]
         public DateTime DateSubmitted { get; set; }
-        [Required]
+        [Required(ErrorMessage = "The referring physician is required")]
         public string ReferringPhysician { get; set; }
         public virtual ICollection<TestViewModel> Tests { get; set; }
+        [Required(ErrorMessage = "The patient is required")]
         public Guid ProfileId { get; set; }
         public virtual PatientProfileViewModel Profile { get; set; }
     }
