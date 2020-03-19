@@ -26,7 +26,7 @@
                               <tr>
                                   <td>Email</td>
                                   <td>
-                                      <input formControlName="Email" name="Email" class="form-control float-sm-left" type="email" placeholder="Email..." />
+                                      <input formControlName="Email" name="Email" class="form-control float-sm-left" type="email" placeholder="Email..." disabled />
                                   </td>
                               </tr>
                           </table>
@@ -56,9 +56,18 @@
                             </div>
                           </div>
 
+                          <div class="row" *ngIf="CanDisplay">
+                            <br/>
+                            <div class="card-body">
+                                <div class="text-center">
+                                  <img [src]="[imageUrl]" class="img-thumbnail profile-picture" alt="profile picture">
+                                </div>
+                            </div>
+                          </div>
+
                     </div>
                   </div>
-                  <br/>
+                  <!--<br/>
                   <div style="text-align: center;">
                     <button class="btn btn-success btn-icon-split" >
                         <span class="icon text-white-50">
@@ -66,7 +75,7 @@
                         </span>
                         <span class="text">Save Now</span>
                     </button>
-                </div>
+                </div>-->
                 <br/>
               </form>
         </div>

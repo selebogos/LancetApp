@@ -34,6 +34,8 @@ export class ProfileComponent implements OnInit {
   selectedOption: FormControl;
   IsRightUser:boolean;
   id: number;
+  CanDisplay:boolean;
+  public imageUrl:string;
   private sub: any;
   constructor(private activeRoute: ActivatedRoute, private register: RegisterService,
      private customerService: CustomerService, private activateUIService:ActivatUIService,
@@ -60,7 +62,21 @@ export class ProfileComponent implements OnInit {
 
       // In a real app: dispatch action to load the details here.
    });
-
+   this.CanDisplay=false;
+   this.register.getProfileDetails().subscribe(
+    result=>{
+      let data=result as any;
+      this.User.email=data.email;
+      if(data!==null && data!==undefined && data.path!==null && data.path!==undefined)
+      {
+        this.CanDisplay=true;
+        this.imageUrl=result.path;
+      }
+    },
+    error=>{
+      this.CanDisplay=false;
+    }
+   );
     /*this.register.getProfileDetails().subscribe(
 
       data => {

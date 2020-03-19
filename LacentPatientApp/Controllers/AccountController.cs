@@ -29,16 +29,14 @@ namespace LancetApp.Web.Controllers
     public class AccountController : ControllerBase
     {
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly AppSettings _appSettings;
         private readonly string _userId;
         private readonly IHttpContextAccessor _httpContextAccessor = null;
 
         public AccountController(IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> _userManager,
-            SignInManager<IdentityUser> _signInManager, IOptions<AppSettings> appSettings)
+             IOptions<AppSettings> appSettings)
         {
             this._userManager = _userManager;
-            this._signInManager = _signInManager;
             _appSettings = appSettings.Value;
             _httpContextAccessor = httpContextAccessor;
         }
@@ -95,7 +93,7 @@ namespace LancetApp.Web.Controllers
 
         [HttpPost("uploadfile"), DisableRequestSizeLimit]
         [Authorize(Roles = Role.Admin)]
-        public async Task<IActionResult> Upload()
+        public async Task<IActionResult> Upload([FromServices]IUserService _userService)
         {
             try
             {
@@ -108,16 +106,21 @@ namespace LancetApp.Web.Controllers
                     var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
                     var fullPath = Path.Combine(pathToSave, fileName);
                     var dbPath = Path.Combine(folderName, fileName);
-
+                    DirectoryInfo directory = new DirectoryInfo(pathToSave);
+                    //Delete Profile picture that is already saved
+                    foreach (FileInfo fileSaved in directory.GetFiles())
+                    {
+                        fileSaved.Delete();
+                    }
                     using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
                         file.CopyTo(stream);
                     }
                     if (string.IsNullOrEmpty(dbPath))
                         return BadRequest();
-
-                    //bool issaved=await _userService.UploadProfilePicture(dbPath);
-                    if (true)
+                    //Save the Image's path to DB
+                    bool isSaved=await _userService.UploadProfilePicture(dbPath);
+                    if (!isSaved)
                         return BadRequest();
 
                     return Ok(new { dbPath });
@@ -135,13 +138,12 @@ namespace LancetApp.Web.Controllers
 
         [HttpGet("profile")]
         [Authorize(Roles = Role.Admin)]
-        public async Task<IActionResult> Profile()
+        public async Task<IActionResult> Profile([FromServices]IUserService _userService)
         {
-
             try
             {
-                //var profiledata =await _userService.GetUserProfile();
-                return Ok(null);
+                var profiledata =await _userService.GetUserProfile();
+                return Ok(profiledata);
             }
             catch (Exception e)
             {

@@ -8,6 +8,9 @@
 
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+.profile-picture{
+  max-height: 150px;
+}
 .container-field {
     display: flex;
     flex-direction: column;

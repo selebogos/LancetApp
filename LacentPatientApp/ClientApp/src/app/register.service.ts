@@ -19,11 +19,13 @@ export class RegisterService {
   private baseUrlUserDetails :string = "/api/account/details/?id=";
   private baseUrlRole: string = "/api/account/getuserrole";
   private baseUrlProfileDetails :string = "/api/account/profile";
+  private baseUrlGetProfileImage:string = "/api/account/profileimage/";
   private baseUrlProfileEditDetails :string = "/api/account/profileedit";
   private loginStatus=new BehaviorSubject<boolean>(this.checkLoLoginStatus());
   private Username=new BehaviorSubject<string>(localStorage.getItem('email'));
   private UserRole=new BehaviorSubject<string>(localStorage.getItem('userRole'));
   private token=new BehaviorSubject<string>(localStorage.getItem('jwt'));
+  public imageUrl=new BehaviorSubject<string>(localStorage.getItem('imageUrl'));
 
   constructor(private http: HttpClient,private router:Router) {
   }
@@ -167,7 +169,14 @@ export class RegisterService {
     this.router.navigate(['/login']);
     console.log('User logged out successfully.');
   }
-
+  get profileImage(){
+    return this.imageUrl.asObservable();
+  }
+  setImageUrl(data:string){
+    localStorage.removeItem('imageUrl');
+    localStorage.setItem('imageUrl',data);
+    return;
+  }
   get isLoggedIn(){
     return this.loginStatus.asObservable();
   }
@@ -218,14 +227,40 @@ export class RegisterService {
       var  uri = this.baseUrlProfileDetails;
         let headers = new HttpHeaders();
         headers.set('Content-Type', 'application/json');
-        return this.http.get(uri, { headers });
+
+        return this.http.get(uri, { headers }).pipe(
+          map(result=>{
+
+            localStorage.removeItem('imageUrl');
+            let data=result as any;
+
+            if(data.path!==null && data.path!==undefined)
+            {
+              localStorage.removeItem('imageUrl');
+              localStorage.setItem('imageUrl',data.path);
+            }
+            return result;
+          })
+
+        );
 
     } catch(e){
       console.log("Error:problem getting profile details "+ e.Message);
       return e.Message;
     }
+  }
+  public getProfileImage(){
 
+    try{
+      var  uri = this.baseUrlGetProfileImage;
+        let headers = new HttpHeaders();
+        headers.set('Content-Type', 'application/json');
+        return this.http.get(uri, { headers });
 
+    } catch(e){
+      console.log("Error:problem getting profile image "+ e.Message);
+      return e.Message;
+    }
   }
 
   public updateProfileDetails(userrole:string,firstname:string,lastname:string,email:string,password:string,
@@ -244,7 +279,6 @@ export class RegisterService {
     } catch (e) {
 
     }
-
   }
 
 

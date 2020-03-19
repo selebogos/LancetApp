@@ -8,6 +8,7 @@ import { UserModel } from '../_models/UserModel';
 import { ActivatUIService } from '../activat-ui.service';
 import { NgxSpinnerService } from "ngx-spinner";
 import { HttpEventType, HttpClient } from '@angular/common/http';
+import { TopbarnavigationComponent } from '../topbarnavigation/topbarnavigation.component';
 @Component({
   selector: 'app-profileedit',
   templateUrl: './profileedit.component.html',
@@ -18,6 +19,7 @@ export class ProfileeditComponent implements OnInit {
   LoginStatus$: Observable<boolean>;
   IsLoggedIn = false;
   Username$: Observable<string>;
+  ProfileImage$: Observable<string>;
   UserRole: FormControl;
   public progress: number;
   public message: string;
@@ -42,8 +44,10 @@ export class ProfileeditComponent implements OnInit {
   id: number;
   private sub: any;
   IsRightUser:boolean;
+  CanDisplay:boolean;
   private baseUrllUpload:string="/api/account/uploadfile/";
   public response: {dbPath: ''};
+  public imageUrl:string;
 
   constructor(private activeRoute: ActivatedRoute,private register: RegisterService,
     private http: HttpClient,
@@ -65,10 +69,11 @@ export class ProfileeditComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     this.activateUIService.initToggle();
+
     //this.customerTypes = this.customerService.getCustomerTypes();
     this.User = new UserModel();
     this.errorList = [];
-
+    this.CanDisplay=false;
     this.UserRole = new FormControl('', [Validators.required, Validators.maxLength(25), Validators.minLength(2)]);
     this.FirstName = new FormControl('', [Validators.required, Validators.maxLength(25), Validators.minLength(3)]);
     this.LastName = new FormControl('', [Validators.required, Validators.maxLength(25), Validators.minLength(3)]);
@@ -97,6 +102,20 @@ export class ProfileeditComponent implements OnInit {
       // In a real app: dispatch action to load the details here.
    });
 
+   this.register.getProfileDetails().subscribe(
+    result=>{
+      let data=result as any;
+      this.Email.setValue(data.email);
+      if(data!==null && data!==undefined && data.path!==null && data.path!==undefined)
+      {
+        this.CanDisplay=true;
+        this.imageUrl=result.path;
+      }
+    },
+    error=>{
+      this.CanDisplay=false;
+    }
+   );
 
 
   }
@@ -114,13 +133,27 @@ export class ProfileeditComponent implements OnInit {
 
     this.http.post(this.baseUrllUpload, formData, {reportProgress: true, observe: 'events'})
       .subscribe(event => {
+
         if (event.type === HttpEventType.UploadProgress)
           this.progress = Math.round(100 * event.loaded / event.total);
-        else if (event.type === HttpEventType.Response) {
+        else if (event.type === HttpEventType.Response)
+        {
           this.message = 'Upload success.';
-          this.onUploadFinished.emit(event.body);
+          if(event.body!==undefined)
+          {
+            let data= event.body as any;
+            this.CanDisplay=true;
+            this.imageUrl = data.dbPath;
+            this.register.setImageUrl(this.imageUrl );
+            var logo = document.getElementById('app-profile-image') as any;
+            logo.src = this.imageUrl;
+          }
         }
       });
+    }
+
+    public createImgPath = (serverPath: string) => {
+      return `api/account/${serverPath}`;
     }
 
   onSave() {

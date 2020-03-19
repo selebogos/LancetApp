@@ -19,7 +19,7 @@
                       <tr>
                           <td>email</td>
                           <td>
-                            <input value="{{User.email}}"  class="form-control float-sm-left" type="email" placeholder="email..." disabled autofocus />
+                            <input value="{{User.email}}"  class="form-control float-sm-left" type="email" placeholder="email..." disabled autofocus disabled />
 
                           </td>
 
@@ -35,47 +35,23 @@
           </div>
 
         <br/>
-                <div class="card shadow mb-12" *ngIf="IsRightUser">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Business Details</h6>
-                  </div>
+        <div class="card shadow mb-12">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Profile Picture</h6>
+          </div>
+          <div class="card-body">
+
+                <div class="row" *ngIf="CanDisplay">
+                  <br/>
                   <div class="card-body">
-                    <div class="table-responsive">
-                      <table class="table-striped"  cellspacing="0" width="100%">
-                          <tr>
-                              <td>Name</td>
-                              <td>
-                                  <input value="{{User.businessName}}" name="businessname" class="form-control float-sm-left" type="text" placeholder="Business Name..." disabled/>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>Street</td>
-                              <td>
-                                  <input value="{{User.street}}" name="street" class="form-control float-sm-left" type="text" placeholder="street..." disabled/>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>Suburb</td>
-                              <td>
-                                  <input value="{{User.suburb}}" name="Suburb" class="form-control float-sm-left" type="text" placeholder="Suburb..." disabled />
-                              </td>
-                          </tr>
-                          <tr>
-                            <td>City</td>
-                            <td>
-                                <input value="{{User.city}}" name="City" class="form-control float-sm-left" type="text" placeholder="City/Town..." disabled />
-                            </td>
-                        </tr>
-                          <tr>
-                                  <td>Postal Code</td>
-                                  <td>
-                                      <input value="{{User.postalCode}}"  name="PostalCode" class="form-control float-sm-left" type="text" placeholder="Postal Code..." disabled />
-                                  </td>
-                              </tr>
-                      </table>
-              </div>
+                      <div class="text-center">
+                        <img [src]="[imageUrl]" class="img-thumbnail profile-picture" alt="profile picture">
+                      </div>
                   </div>
-                  </div>
+                </div>
+
+          </div>
+        </div>
         </div>
                   <br />
                   <div style="text-align: center;">

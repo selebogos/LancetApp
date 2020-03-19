@@ -11,11 +11,11 @@ $(document).ready(function(e){
 
   if (isLoggedin ===undefined || isLoggedin==="false"){
         $('#page-top').addClass("bg-gradient-primary");
-        $('#page-top').css({"background-image": "linear-gradient(180deg, #f66 10%, #224abe 100%)"});
+        $('#page-top').css({"background-image": "linear-gradient(rgb(255, 137, 102) 10%, rgb(73, 250, 255) 100%)"});
     }
     else{
         $('#page-top').removeClass("bg-gradient-primary");
-        $('#page-top').css({"background-image": "linear-gradient(180deg, #f66 10%, #224abe 100%)"});
+        $('#page-top').css({"background-image": "linear-gradient(rgb(255, 137, 102) 10%, rgb(73, 250, 255) 100%);"});
         //$('#page-top').css({"background-image": ""});
     }
     /*

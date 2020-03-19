@@ -45,7 +45,10 @@ namespace LancetApp.Core.Service
             try
             {
                 var user = await _userManager.FindByEmailAsync(_userId);
-                var result = new UserDto {Email=user.Email,Id=user.Id };
+                var profile = await _dbContext.ProfilePicture.FirstOrDefaultAsync(p => p.UserId == user.Id);
+                if (profile == null)
+                    return new UserDto { Email = user.Email, Id = user.Id };
+                var result = new UserDto {Email=user.Email,Id=user.Id,path=profile.path };
                 return result;
             }
             catch (Exception e)

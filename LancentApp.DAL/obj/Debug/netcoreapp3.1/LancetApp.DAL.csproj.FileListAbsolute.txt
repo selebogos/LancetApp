@@ -5,3 +5,4 @@ C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancentApp.DAL\obj\Debug\net
 C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancentApp.DAL\obj\Debug\netcoreapp3.1\LancetApp.DAL.AssemblyInfo.cs
 C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancentApp.DAL\obj\Debug\netcoreapp3.1\LancetApp.DAL.dll
 C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancentApp.DAL\obj\Debug\netcoreapp3.1\LancetApp.DAL.pdb
+C:\Users\Gerard\Documents\Projects\LacentPatientApp\LancentApp.DAL\obj\Debug\netcoreapp3.1\LancetApp.DAL.csprojAssemblyReference.cache

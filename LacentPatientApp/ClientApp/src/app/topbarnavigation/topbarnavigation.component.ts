@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild, OnInit, Renderer } from '@angular/core';
 import { RegisterService } from '../register.service';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { UserModel } from '../_models/UserModel';
 
@@ -14,16 +14,20 @@ export class TopbarnavigationComponent implements OnInit, AfterViewInit  {
 
   LoginStatus$: Observable<boolean>;
   Username$: Observable<string>;
+  ProfileImage$: Observable<string>;
   Username:string;
   User: UserModel;
+  public imageUrl:string;
+  CanDisplay:boolean;
   //@ViewChild('pageTop', { static: false }) myDiv: ElementRef;
-  constructor(private router:Router,private renderer: Renderer ,private register: RegisterService) {
+  constructor(private router:Router,private register: RegisterService) {
 
   }
 
   ngOnInit() {
 
     this.User = new UserModel();
+    this.CanDisplay=false;
     this.LoginStatus$ = this.register.isLoggedIn;
     this.Username$ = this.register.currentUsername;
 
@@ -31,14 +35,22 @@ export class TopbarnavigationComponent implements OnInit, AfterViewInit  {
 
       this.Username=data;
     });
+    this.ProfileImage$=this.register.imageUrl;
+    this.register.imageUrl.subscribe(
+      (data:string)=>{
+        this.imageUrl=data;
+    });
 
     this.register.getProfileDetails().subscribe(
 
       data => {
         this.User = data as any;
         this.Username = this.User.email;
-
-
+        if(data!==null && data!==undefined && data.path!==null && data.path!==undefined)
+        {
+          this.CanDisplay=true;
+          this.imageUrl=data.path;
+        }
         console.log(this.User);
       },
       error => {
@@ -87,5 +99,8 @@ export class TopbarnavigationComponent implements OnInit, AfterViewInit  {
     $("#page-top").css("padding-right","0px")
 
    // location.reload();
+  }
+  public setImage(path:string){
+    this.imageUrl=path;
   }
 }
